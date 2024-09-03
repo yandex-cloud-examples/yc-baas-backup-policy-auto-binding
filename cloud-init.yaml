@@ -1,0 +1,17 @@
+#cloud-config
+datasource:
+ Ec2:
+  strict_id: false
+ssh_pwauth: no
+users:
+- name: <имя_пользователя>
+  sudo: ALL=(ALL) NOPASSWD:ALL
+  shell: /bin/bash
+  ssh_authorized_keys:
+  - <публичный_ssh_ключ>
+packages:
+  - curl
+  - perl
+  - jq
+runcmd:
+  - curl https://storage.yandexcloud.net/backup-distributions/agent_installer.sh | sudo bash
